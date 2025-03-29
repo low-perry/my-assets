@@ -1,0 +1,9 @@
+<svg width="600" height="100">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f5e0dc;" />
+      <stop offset="100%" style="stop-color:#cba6f7;" />
+    </linearGradient>
+  </defs>
+  <text x="50%" y="60%" font-family="Arial" font-size="50" font-weight="bold" text-anchor="middle" fill="url(#gradient)">Your Title Here</text>
+</svg>
