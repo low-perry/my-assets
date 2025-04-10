@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Presentation Receiver</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #222;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Receiver Interface</h1>
+  <script>
+    if (navigator.presentation && navigator.presentation.receiver) {
+      navigator.presentation.receiver.connectionList.then((connectionList) => {
+        connectionList.connections.forEach((connection) => {
+          console.log("Receiver connected to session:", connection);
+          connection.addEventListener("message", (event) => {
+            console.log("Receiver got message:", event.data);
+            // Optionally, send a reply back:
+            connection.send("Hello from the Receiver Interface!");
+          });
+        });
+      });
+    }
+    else {
+      console.error("Presentation Receiver is not supported in this browser.");
+    }
+  </script>
+</body>
+</html>
