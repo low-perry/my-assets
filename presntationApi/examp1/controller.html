@@ -37,13 +37,14 @@
 
   <script>
     if ("presentation" in navigator) {
-      navigator.presentation.defaultPresentation = new PresentationRequest(["presentation.html"]);
+      const presentationRequest = new PresentationRequest(["presentation.html"]);
+      const presentationReq1 = new PresentationRequest(["receiver.html"]); 
       // Use the default presentation if available, otherwise manually create one
-      const presentationRequest = navigator.presentation.defaultPresentation;
+       navigator.presentation.defaultRequest = presentationRequest;
                                   
       
       document.getElementById("startPresentation").addEventListener("click", () => {
-        presentationRequest.start().then(session => {
+        presentationReq1.start().then(session => {
           console.log("Presentation session started:", session);
           
           // Optional: listen for messages from the presentation or receiver
