@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Presentation Display</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to the Presentation</h1>
+  <script>
+    console.log("Presentation page loaded.");
+
+    // Optionally, if this page is running as a receiver on its own device,
+    // you can set up messaging. This code would allow the presentation page
+    // to receive messages, for example from the controller.
+    if (navigator.presentation && navigator.presentation.receiver) {
+      console.log("This page is a presentation receiver.");
+      navigator.presentation.receiver.connectionList.then((connectionList) => {
+        connectionList.connections.forEach((connection) => {
+          console.log("Connected to controller:", connection);
+          connection.addEventListener("message", (event) => {
+            console.log("Received message from controller:", event.data);
+            // Optionally, send a reply back:
+            connection.send("Hello from the Presentation Display!");
+          });
+        });
+      });
+    }
+  </script>
+</body>
+</html>

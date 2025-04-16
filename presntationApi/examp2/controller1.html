@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Presentation Controller</title>
+  <!-- This link sets the default presentation (the main display content) 
+       and specifies a dedicated receiver page -->
+  <link rel="default-presentation" href="presentation.html" receiver="receiver.html">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f3f3f3;
+      margin: 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border: none;
+      background-color: #0078D7;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005a9e;
+    }
+  </style>
+</head>
+<body>
+  <h1>Presentation Controller</h1>
+  <button id="startPresentation">Start Presentation</button>
+
+  <script>
+    if ("presentation" in navigator) {
+      const presentationRequest = new PresentationRequest(["presentation.html"]);
+      const presentationReq1 = new PresentationRequest(["receiver.html"]); 
+      // Use the default presentation if available, otherwise manually create one
+       navigator.presentation.defaultRequest = presentationRequest;
+                                  
+      
+      document.getElementById("startPresentation").addEventListener("click", () => {
+        presentationReq1.start().then(session => {
+          console.log("Presentation session started:", session);
+          
+        }).catch(error => {
+          console.error("Error starting presentation session:", error);
+        });
+      });
+
+      presentationReq1.addEventListener("connectionavailable", (event) => {
+        console.log("Connection available:", event.connection);
+        // Optionally, listen for messages from the receiver
+        event.connection.addEventListener("message", (event) => {
+          console.log("Controller received message:", event.data);
+        });
+      });
+    } else {
+      console.error("Presentation API is not available in this browser.");
+    }
+  </script>
+</body>
+</html>

@@ -265,13 +265,13 @@ f[]=color:red&f[]=color:value_missing
 Luigi's Box can automatically augment queries to avoid no-results or low-relevance results:
 
 1. **Typo correction**: Fixes typos like "sheos" → "shoes"
-   - Example: `<strike>sheos</strike> <b>shoes</b>`
+   - Example: `<s>sheos</s> <b>shoes</b>`
 
 2. **Partial term removal**: Removes terms causing no results
-   - Example: `shoes <strike>whiskey</strike>`
+   - Example: `shoes <s>whiskey</s>`
 
 3. **Code correction**: Attempts to match similar codes
-   - Example: `6834a<strike>88asc</strike>`
+   - Example: `6834a<s>88asc</s>`
 
 The `corrected_query` field contains HTML representation of the augmented query.
 
