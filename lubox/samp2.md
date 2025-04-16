@@ -1,5 +1,8 @@
 # Search API Documentation
 
+The Luigi's Box Search API empowers e-commerce businesses to integrate a powerful, AI-driven search functionality into their websites and applications. This API allows your customers to quickly and easily find the products they are looking for, enhancing their shopping experience and ultimately boosting your conversion rates and revenue .
+This documentation provides a comprehensive guide to using the Search API, covering its core features, technical specifications, and best practices for implementation.
+
 ## Endpoints Overview
 
 | Endpoint  | Method | Description                                          |
